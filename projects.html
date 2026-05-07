@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cesar | Projects</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html, body {
+      min-height: 100%;
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
+    body {
+      display: flex;
+      min-height: 100vh;
+      background: linear-gradient(135deg, #0b0f19, #111827, #1f2937);
+      color: #f3f4f6;
+    }
+
+    .sidebar {
+      width: 290px;
+      background: rgba(10, 15, 25, 0.92);
+      backdrop-filter: blur(8px);
+      border-right: 1px solid rgba(255, 255, 255, 0.08);
+      padding: 40px 28px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      flex-shrink: 0;
+    }
+
+
+    .profile-pic {
+        width: 180px;
+        height: 180px;
+        border-radius: 50%;
+        object-fit: cover;
+        object-position: center;
+        display: block;
+        margin: 0 auto 30px auto;
+    }
+
+    .name-block {
+      text-align: center;
+      margin-bottom: 34px;
+    }
+
+    .name-block h2 {
+      font-size: 1.35rem;
+      font-weight: 600;
+      margin-bottom: 8px;
+      color: #ffffff;
+    }
+
+    .name-block p {
+      font-size: 0.95rem;
+      color: #9ca3af;
+      line-height: 1.5;
+    }
+
+    .nav {
+      width: 100%;
+      margin-top: 10px;
+    }
+
+    .nav a {
+      display: block;
+      width: 100%;
+      text-decoration: none;
+      color: #d1d5db;
+      padding: 14px 16px;
+      margin-bottom: 12px;
+      border-radius: 12px;
+      font-size: 1rem;
+      transition: all 0.2s ease;
+      border: 1px solid transparent;
+    }
+
+    .nav a:hover {
+      background: rgba(255, 255, 255, 0.05);
+      color: #ffffff;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .nav a.active {
+      background: rgba(255, 255, 255, 0.08);
+      color: #ffffff;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+    }
+
+    .content {
+      flex: 1;
+      padding: 70px 60px;
+    }
+
+    .page-header {
+      max-width: 900px;
+      margin-bottom: 40px;
+    }
+
+    .page-tag {
+      display: inline-block;
+      margin-bottom: 18px;
+      padding: 8px 14px;
+      border-radius: 999px;
+      background: rgba(96, 165, 250, 0.12);
+      color: #93c5fd;
+      font-size: 0.92rem;
+      border: 1px solid rgba(147, 197, 253, 0.18);
+    }
+
+    .page-header h1 {
+      font-size: 3.4rem;
+      line-height: 1.05;
+      letter-spacing: -1.2px;
+      margin-bottom: 18px;
+      color: #ffffff;
+    }
+
+    .page-header p {
+      font-size: 1.08rem;
+      line-height: 1.8;
+      color: #cbd5e1;
+      max-width: 760px;
+    }
+
+    .projects-list {
+      display: flex;
+      flex-direction: column;
+      gap: 34px;
+      margin-top: 30px;
+    }
+
+    .project-card {
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 22px;
+      overflow: hidden;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.18);
+    }
+
+    .project-image {
+      width: 100%;
+      height: 420px;
+      background: rgba(255, 255, 255, 0.03);
+      overflow: hidden;
+    }
+
+    .project-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .project-info {
+      padding: 28px 28px 30px;
+    }
+
+    .project-info h2 {
+      font-size: 2rem;
+      margin-bottom: 10px;
+      color: #ffffff;
+    }
+
+    .stack {
+      font-size: 0.98rem;
+      color: #93c5fd;
+      margin-bottom: 18px;
+      font-weight: 600;
+      letter-spacing: 0.2px;
+    }
+
+    .project-info p {
+      font-size: 1.05rem;
+      line-height: 1.8;
+      color: #cbd5e1;
+      max-width: 900px;
+      margin-bottom: 22px;
+    }
+
+    .project-links {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      text-decoration: none;
+      padding: 13px 20px;
+      border-radius: 12px;
+      font-size: 0.98rem;
+      transition: 0.2s ease;
+      display: inline-block;
+    }
+
+    .btn-primary {
+      background: #93c5fd;
+      color: #0b1120;
+      font-weight: 600;
+    }
+
+    .btn-primary:hover {
+      background: #bfdbfe;
+    }
+
+    .btn-secondary {
+      background: rgba(255, 255, 255, 0.04);
+      color: #e5e7eb;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .btn-secondary:hover {
+      background: rgba(255, 255, 255, 0.08);
+    }
+
+    @media (max-width: 1000px) {
+      body {
+        flex-direction: column;
+      }
+
+      .sidebar {
+        width: 100%;
+        height: auto;
+        position: relative;
+        border-right: none;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      }
+
+      .content {
+        padding: 50px 24px;
+      }
+
+      .page-header h1 {
+        font-size: 2.6rem;
+      }
+
+      .project-image {
+        height: 300px;
+      }
+
+      .project-info h2 {
+        font-size: 1.6rem;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .project-image {
+        height: 230px;
+      }
+
+      .page-header h1 {
+        font-size: 2.2rem;
+      }
+
+      .project-info {
+        padding: 22px;
+      }
+
+      .project-info p {
+        font-size: 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <aside class="sidebar">
+    <img src="images/profile.png" alt="Cesar profile photo" class="profile-pic">
+
+    <div class="name-block">
+      <h2>Cesar Sanchez</h2>
+      <p>Engineering student at NYU with interests in software, systems, and analytical problem-solving.</p>
+    </div>
+
+    <nav class="nav">
+      <a href="index.html">About</a>
+      <a href="projects.html" class="active">Projects</a>
+      <a href="experience.html">Experience</a>
+    </nav>
+  </aside>
+
+  <main class="content">
+    <section class="page-header">
+      <div class="page-tag">Selected Projects</div>
+      <h1>Projects that reflect how I build and think.</h1>
+      <p>
+        A selection of work spanning full-stack development, embedded systems,
+        and real-time computer vision. Each project reflects a different part
+        of how I approach technical problem-solving.
+      </p>
+    </section>
+
+    <section class="projects-list">
+
+      <!-- Project 1 -->
+      <article class="project-card">
+        <div class="project-image">
+          <img src="images/ticketing1.png" alt="SimpleTix project image">
+        </div>
+
+        <div class="project-info">
+          <h2>SimpleTix - An Event Ticketing Web Application</h2>
+          <div class="stack">Django · PostgreSQL · JavaScript · AWS</div>
+          <p>
+            Within a team of 5 engineers, and under the guidance of an engineering manager at Google, we built a full-stack web application for creating, managing, and browsing events,
+            with a focus on structured data handling and usability. Developed both frontend
+            and backend components, integrating dynamic search and database-driven functionality
+            to support a scalable and reliable system.
+          </p>
+
+          <div class="project-links">
+            <a href="https://github.com/gcivil-nyu-org/team1-mon-fall25" target="_blank" class="btn btn-primary">View on GitHub</a>
+          </div>
+        </div>
+      </article>
+
+      <!-- Project 2 -->
+      <article class="project-card">
+        <div class="project-image">
+          <img src="images/tremor1.png" alt="Parkinsonian tremor detection project image">
+        </div>
+
+        <div class="project-info">
+          <h2>Parkinsonian Tremor Detection System</h2>
+          <div class="stack">STM32 · Embedded C · Gyroscope Sensor · Signal Processing</div>
+          <p>
+            Built an embedded system that analyzes real-time motion data from a gyroscope to
+            detect tremor patterns associated with Parkinson’s disease. Combined sensor integration
+            with signal processing techniques to demonstrate practical, low-level system design
+            for health monitoring applications.
+          </p>
+
+          <div class="project-links">
+            <a href="https://github.com/cesarsanchez1/Wearable-Parkinson-s-Tremor-Detector" target="_blank" class="btn btn-primary">View on GitHub</a>
+          </div>
+        </div>
+      </article>
+
+      <!-- Project 3 -->
+      <article class="project-card">
+        <div class="project-image">
+          <img src="images/face1.png" alt="Real-time face recognition project image">
+        </div>
+
+        <div class="project-info">
+          <h2>Real-Time Face Recognition System</h2>
+          <div class="stack">Python · OpenCV · Face Encoding · Database Integration</div>
+          <p>
+            Developed a real-time facial recognition system that processes live video input
+            to identify individuals and retrieve associated data from a database. Designed
+            an end-to-end pipeline that integrates computer vision, face encoding, and database
+            matching to enable efficient, real-time identification.
+          </p>
+
+          <div class="project-links">
+            <a href="https://github.com/cesarsanchez1/FaceRecognitionRealTimeDatabase" target="_blank" class="btn btn-primary">View on GitHub</a>
+          </div>
+        </div>
+      </article>
+
+    </section>
+  </main>
+
+</body>
+</html>
